@@ -6,6 +6,8 @@
 [![node](https://img.shields.io/badge/node-%3E%3D18-brightgreen)](package.json)
 ![zero dependencies](https://img.shields.io/badge/dependencies-0-success)
 
+<p align="center"><img src="assets/demo.svg" alt="pr-genie demo" width="720"></p>
+
 **Stop writing PR boilerplate.** pr-genie reads your diff, groups every file by
 area, and auto-writes the PR title and a complete Markdown description —
 summary, stats, commit list, review checklist. Works offline in milliseconds,
