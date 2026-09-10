@@ -1,8 +1,8 @@
 'use strict';
 
-const { parseNumstat, buildTitle } = require('./diff');
-const { buildPR } = require('./summarize');
-const { detectBase, stagedNumstat, baseNumstat, commitSubjects } = require('./git');
+const { parseNumstat, buildTitle } = require('../src/diff');
+const { buildPR } = require('../src/summarize');
+const { stagedNumstat, baseNumstat, commitSubjects } = require('../src/git');
 
 const HELP = `pr-genie 🧞 — PR titles & descriptions, auto-written from your diff
 
