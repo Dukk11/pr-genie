@@ -1,0 +1,44 @@
+name: 'pr-genie'
+description: 'Auto-write the PR description from the diff. Zero dependencies, optional Ollama polish.'
+author: 'Duk · dukdev.com'
+
+inputs:
+  base:
+    description: 'Base ref to diff against (defaults to auto-detected main/master)'
+    required: false
+    default: ''
+  ai:
+    description: "Ollama model for a polish pass (empty = offline heuristic only)"
+    required: false
+    default: ''
+  github-token:
+    description: 'Token used by gh to update the PR body'
+    required: false
+    default: ${{ github.token }}
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+    - name: Generate PR description
+      shell: bash
+      env:
+        PRG_BASE: ${{ inputs.base }}
+        PRG_AI: ${{ inputs.ai }}
+      run: |
+        ARGS=""
+        if [ -n "$PRG_BASE" ]; then ARGS="$ARGS --base $PRG_BASE"; fi
+        if [ -n "$PRG_AI" ]; then ARGS="$ARGS --ai $PRG_AI"; fi
+        node "${{ github.action_path }}/bin/pr-genie.js" $ARGS > pr-body.md
+        echo "PR body written to pr-body.md"
+    - name: Update PR body
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
+      run: gh pr edit --repo "$GITHUB_REPOSITORY" "${{ github.event.pull_request.number }}" --body-file pr-body.md
+
+branding:
+  icon: 'zap'
+  color: 'purple'

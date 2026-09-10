@@ -1,0 +1,36 @@
+{
+  "name": "pr-genie",
+  "version": "1.0.0",
+  "description": "Auto-writes PR titles and descriptions from your diff. Zero dependencies, works offline, optional Ollama polish. Stop writing boilerplate PRs.",
+  "main": "src/index.js",
+  "bin": {
+    "pr-genie": "bin/pr-genie.js"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "pull-request",
+    "code-review",
+    "git",
+    "automation",
+    "cli",
+    "ollama",
+    "ai",
+    "github",
+    "zero-dependency"
+  ],
+  "author": "Duk · dukdev.com",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dukk11/pr-genie.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Dukk11/pr-genie/issues"
+  },
+  "homepage": "https://github.com/Dukk11/pr-genie#readme"
+}
